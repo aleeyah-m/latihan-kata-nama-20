@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latihan Kata Nama Terbitan — Latihan 20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#1E3A4C; --indigo-deep:#132833; --gold:#C89B3C; --gold-soft:#E4C878;
+    --cream:#F5F0E1; --cream-card:#FBF8EF; --coral:#D65F4C; --coral-soft:#F3D9D3;
+    --green:#4F7756; --green-soft:#DCE7D8; --amber-soft:#F2E4C4; --ink:#24313A;
+    --ink-soft:#5B6B72; --line:#D9D0B8;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 100px;}
+
+  header{ position:relative; background:var(--indigo); color:var(--cream); border-radius:20px; padding:36px 32px; margin-bottom:36px; overflow:hidden; }
+  header::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(200,155,60,0.08) 0 2px, transparent 2px 22px),
+      repeating-linear-gradient(25deg, rgba(200,155,60,0.06) 0 2px, transparent 2px 22px);
+    pointer-events:none;
+  }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-soft); position:relative; }
+  h1{ font-family:'Fraunces', serif; font-weight:600; font-size:clamp(26px,5vw,36px); margin:8px 0 6px; position:relative; line-height:1.15; }
+  .subline{position:relative; color:#C9D6DC; font-size:14px; margin:0 0 4px;}
+  .subline .tag-peman{ font-family:'IBM Plex Mono', monospace; color:var(--gold-soft); background:rgba(228,200,120,0.14); padding:1px 7px; border-radius:6px; }
+
+  .instructions{ position:relative; margin-top:18px; background:rgba(255,255,255,0.06); border:1px solid rgba(228,200,120,0.3); border-radius:14px; padding:18px 20px 16px; }
+  .instructions-title{margin:0 0 10px; font-family:'Fraunces', serif; font-weight:600; font-size:16px; color:var(--gold-soft);}
+  .instructions ol{margin:0; padding-left:20px; color:#D6E0E5; font-size:13.5px; line-height:1.65;}
+  .instructions ol > li{margin-bottom:8px;}
+  .instructions ol > li:last-child{margin-bottom:0;}
+  .instructions b{color:var(--gold-soft); font-weight:600;}
+
+  .progress-row{position:relative; margin-top:24px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .progress-track{flex:1; min-width:120px; height:8px; border-radius:99px; background:rgba(255,255,255,0.14); overflow:hidden;}
+  .progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--gold-soft)); border-radius:99px; transition:width .5s cubic-bezier(.4,1.4,.6,1);}
+  .progress-label{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--gold-soft); white-space:nowrap;}
+  .clear-btn{
+    flex:0 0 auto; font-family:'Plus Jakarta Sans', sans-serif; font-weight:600; font-size:12.5px;
+    color:var(--cream); background:rgba(255,255,255,0.1); border:1px solid rgba(228,200,120,0.4);
+    border-radius:99px; padding:7px 14px; cursor:pointer; white-space:nowrap; transition:background .2s, border-color .2s;
+  }
+  .clear-btn:hover{background:rgba(214,95,76,0.25); border-color:var(--coral);}
+  @media (max-width:480px){ .progress-row{flex-wrap:wrap;} .clear-btn{width:100%; order:3;} }
+
+  .legend{background:var(--cream-card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; margin-bottom:32px;}
+  .legend summary{
+    cursor:pointer; font-family:'Fraunces', serif; font-weight:600; font-size:16px; color:var(--indigo);
+    list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .legend summary::-webkit-details-marker{display:none;}
+  .legend summary::after{ content:"↓ วิธีสังเกต"; font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:12.5px; color:var(--ink-soft); white-space:nowrap; }
+  .legend[open] summary::after{content:"↑ ซ่อน";}
+  .legend-grid{margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .legend-col{ background:rgba(30,58,76,0.03); border-radius:12px; padding:14px 16px; font-size:13.5px; line-height:1.6; }
+  .legend-col b{color:var(--indigo); font-family:'IBM Plex Mono', monospace;}
+  @media (max-width:520px){ .legend-grid{grid-template-columns:1fr;} }
+
+  .thread{position:relative;}
+  .thread::before{
+    content:""; position:absolute; left:23px; top:8px; bottom:8px; width:2px;
+    background:repeating-linear-gradient(var(--line), var(--line) 6px, transparent 6px, transparent 11px); z-index:0;
+  }
+  .card{position:relative; z-index:1; display:flex; gap:16px; margin-bottom:16px;}
+  .node{
+    flex:0 0 48px; height:48px; border-radius:50%; background:var(--cream-card); border:2px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace;
+    font-weight:600; color:var(--ink-soft); transition:all .3s ease; margin-top:6px;
+  }
+  .card.correct .node{background:var(--gold); border-color:var(--gold); color:var(--indigo-deep);}
+  .card-body{ flex:1; background:var(--cream-card); border:1px solid var(--line); border-radius:16px; padding:18px 22px; transition:border-color .3s ease; }
+  .card.correct .card-body{border-color:var(--gold);}
+
+  .q-row{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; flex-wrap:wrap;}
+  .q-word{font-family:'Fraunces', serif; font-weight:600; font-size:24px; color:var(--indigo);}
+
+  .choice-row{display:flex; gap:10px;}
+  button.choice{
+    flex:1; padding:12px 14px; border-radius:12px; border:1.5px solid var(--line);
+    background:#fff; font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:14px;
+    color:var(--indigo); cursor:pointer; transition:all .15s ease;
+  }
+  button.choice:hover{border-color:var(--indigo); background:rgba(30,58,76,0.04);}
+  button.choice.picked-correct{background:var(--green-soft); border-color:var(--green); color:#2E4A33;}
+  button.choice.picked-wrong{background:var(--coral-soft); border-color:var(--coral); color:#7A2D22;}
+  button.choice:disabled{cursor:default; opacity:0.55;}
+
+  .feedback{margin-top:12px; border-radius:12px; padding:14px 16px; font-size:14px; line-height:1.55; display:none;}
+  .feedback.show{display:block; animation:pop .25s ease;}
+  @keyframes pop{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:translateY(0);}}
+  .feedback.green{background:var(--green-soft); color:#2E4A33;}
+  .feedback.red{background:var(--coral-soft); color:#7A2D22;}
+  .feedback .tag{font-weight:700; margin-bottom:4px; display:block;}
+  .feedback .formula{ font-family:'IBM Plex Mono', monospace; font-size:13px; margin-top:8px; padding:8px 10px; background:rgba(255,255,255,0.55); border-radius:8px; display:inline-block; }
+
+  .summary{margin-top:32px; background:var(--indigo); color:var(--cream); border-radius:20px; padding:32px; text-align:center; display:none;}
+  .summary.show{display:block; animation:pop .4s ease;}
+  .summary h2{font-family:'Fraunces', serif; font-size:26px; margin:0 0 8px; color:var(--gold-soft);}
+  .summary p{margin:0; color:#C9D6DC; font-size:14.5px;}
+  .summary .score{font-family:'IBM Plex Mono', monospace; font-size:38px; color:var(--gold); margin:10px 0;}
+  .reset-btn{ margin-top:18px; background:var(--gold); color:var(--indigo-deep); border:none; padding:10px 22px; border-radius:99px; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; }
+
+  @media (max-width:480px){
+    .card{gap:10px;}
+    .node{flex:0 0 36px;height:36px;font-size:12px;margin-top:4px;}
+    .thread::before{left:17px;}
+    .card-body{padding:14px 16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Latihan 20 · Kata Nama Terbitan · ม.29</div>
+    <h1>คำนี้เป็นคำมูลหรือคำเติม?</h1>
+    <p class="subline">รอบนี้ตอบแค่<span class="tag-peman">2 ตัวเลือก</span> — กดปุ่มเลือกว่าคำที่เห็นเป็น <b>KD (Kata Dasar)</b> หรือ <b>KT (Kata Terbitan)</b></p>
+
+    <div class="instructions">
+      <p class="instructions-title">📋 คำชี้แจง</p>
+      <ol>
+        <li>อ่านคำ (Perkataan) ที่กำหนดให้ แล้วกดปุ่มเลือกว่าเป็น <b>KD</b> (Kata Dasar = คำมูล ยังไม่เติมหน่วยคำใดๆ) หรือ <b>KT</b> (Kata Terbitan = คำที่เติมหน่วยคำแล้ว)</li>
+        <li>กดปุ่มได้ทันที ไม่ต้องพิมพ์ — ระบบตรวจให้ทันทีที่กด</li>
+        <li>ตอบถูก 🟢 จะล็อกคำตอบและนับคะแนน — ตอบผิด 🔴 ระบบจะอธิบายเหตุผลและให้ลองกดใหม่ได้จนกว่าจะถูก</li>
+        <li>ปุ่ม <b>"↺ ล้างคำตอบ"</b> ใช้เริ่มทำใหม่ทั้งหมดได้ตลอดเวลา</li>
+      </ol>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 16 ถูกต้อง</div>
+      <button class="clear-btn" onclick="confirmReset()" title="ล้างคำตอบทั้งหมดและเริ่มทำใหม่">↺ ล้างคำตอบ</button>
+    </div>
+  </header>
+
+  <details class="legend">
+    <summary>วิธีสังเกต KD กับ KT</summary>
+    <div class="legend-grid">
+      <div class="legend-col"><b>KD — Kata Dasar</b><br>คำมูลดั้งเดิม ยังไม่มีการเติมหน่วยคำใดๆ เข้าไป มักเป็นคำกริยาหรือคำคุณศัพท์พื้นฐาน เช่น tulis, makan, bersih</div>
+      <div class="legend-col"><b>KT — Kata Terbitan</b><br>คำที่มีหน่วยคำเติมประกอบอยู่แล้ว เช่น peN- (penulis), -an (makanan), peN-...-an (pendidikan), ke-...-an (kebersihan), per-...-an (perdagangan)</div>
+    </div>
+  </details>
+
+  <div class="thread" id="thread"></div>
+
+  <div class="summary" id="summary">
+    <h2 id="summaryTitle">Tahniah! 🎉</h2>
+    <div class="score" id="summaryScore">16 / 16</div>
+    <p id="summaryText">คุณจำแนกคำมูลและคำเติมได้ถูกต้องครบทุกข้อแล้ว</p>
+    <button class="reset-btn" onclick="resetAll()">เริ่มใหม่อีกครั้ง</button>
+  </div>
+
+</div>
+
+<script>
+const DATA = [
+  { word:"tulis", type:"KD", meaning:"เขียน", explain:"tulis เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"penulis", type:"KT", meaning:"ผู้เขียน", explain:"penulis มีหน่วยคำเติม peN- (pen-) นำหน้า tulis" },
+  { word:"makan", type:"KD", meaning:"กิน", explain:"makan เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"makanan", type:"KT", meaning:"อาหาร", explain:"makanan มีปัจจัย -an เติมท้าย makan" },
+  { word:"didik", type:"KD", meaning:"อบรมสั่งสอน", explain:"didik เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"pendidikan", type:"KT", meaning:"การศึกษา", explain:"pendidikan มีหน่วยคำเติมวงล้อม pen-...-an" },
+  { word:"bersih", type:"KD", meaning:"สะอาด", explain:"bersih เป็นคำมูล (คำคุณศัพท์) ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"kebersihan", type:"KT", meaning:"ความสะอาด", explain:"kebersihan มีหน่วยคำเติมวงล้อม ke-...-an" },
+  { word:"bangun", type:"KD", meaning:"สร้าง / ตื่น", explain:"bangun เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"pembangunan", type:"KT", meaning:"การพัฒนา", explain:"pembangunan มีหน่วยคำเติมวงล้อม pem-...-an" },
+  { word:"kerja", type:"KD", meaning:"ทำงาน", explain:"kerja เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"pekerja", type:"KT", meaning:"ผู้ใช้แรงงาน", explain:"pekerja มีหน่วยคำเติม pe- นำหน้า kerja (คำยกเว้น)" },
+  { word:"nyanyi", type:"KD", meaning:"ร้องเพลง", explain:"nyanyi เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"penyanyi", type:"KT", meaning:"นักร้อง", explain:"penyanyi มีหน่วยคำเติม pe- นำหน้า nyanyi" },
+  { word:"dagang", type:"KD", meaning:"ค้าขาย", explain:"dagang เป็นคำมูล ยังไม่มีหน่วยคำเติมใดๆ" },
+  { word:"perdagangan", type:"KT", meaning:"การค้า", explain:"perdagangan มีหน่วยคำเติมวงล้อม per-...-an" },
+];
+
+let solvedCount = 0;
+
+function buildCards(){
+  const thread = document.getElementById('thread');
+  thread.innerHTML = '';
+  DATA.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card-'+i;
+    card.innerHTML = `
+      <div class="node">${String(i+1).padStart(2,'0')}</div>
+      <div class="card-body">
+        <div class="q-row"><span class="q-word">${item.word}</span></div>
+        <div class="choice-row">
+          <button class="choice" id="btn-KD-${i}" onclick="choose(${i}, 'KD')">KD — Kata Dasar</button>
+          <button class="choice" id="btn-KT-${i}" onclick="choose(${i}, 'KT')">KT — Kata Terbitan</button>
+        </div>
+        <div class="feedback" id="feedback-${i}"></div>
+      </div>
+    `;
+    thread.appendChild(card);
+  });
+  document.getElementById('progressLabel').textContent = `0 / ${DATA.length} ถูกต้อง`;
+}
+
+function choose(i, picked){
+  const item = DATA[i];
+  const card = document.getElementById('card-'+i);
+  const fb = document.getElementById('feedback-'+i);
+  const btnKD = document.getElementById('btn-KD-'+i);
+  const btnKT = document.getElementById('btn-KT-'+i);
+
+  if (card.classList.contains('correct')) return;
+
+  const isCorrect = picked === item.type;
+  const pickedBtn = picked === 'KD' ? btnKD : btnKT;
+
+  [btnKD, btnKT].forEach(b => b.classList.remove('picked-correct','picked-wrong'));
+
+  if (isCorrect) {
+    pickedBtn.classList.add('picked-correct');
+    btnKD.disabled = true; btnKT.disabled = true;
+    card.classList.add('correct');
+    solvedCount++;
+    fb.className = 'feedback show green';
+    fb.innerHTML = `
+      <span class="tag">🟢 Tahniah! 🎉</span>
+      ${item.word} เป็น <b>${item.type}</b> ถูกต้อง — ${item.explain} (ความหมาย: ${item.meaning})
+    `;
+    updateProgress();
+  } else {
+    pickedBtn.classList.add('picked-wrong');
+    fb.className = 'feedback show red';
+    const correctLabel = item.type === 'KD' ? 'KD — Kata Dasar' : 'KT — Kata Terbitan';
+    fb.innerHTML = `
+      <span class="tag">🔴 Belum tepat!</span>
+      ${item.word} จริงๆ แล้วเป็น <b>${correctLabel}</b> — ${item.explain} ลองกดใหม่อีกครั้ง
+    `;
+  }
+}
+
+function updateProgress(){
+  const pct = Math.round((solvedCount / DATA.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${solvedCount} / ${DATA.length} ถูกต้อง`;
+  if (solvedCount === DATA.length) {
+    const summary = document.getElementById('summary');
+    document.getElementById('summaryScore').textContent = `${solvedCount} / ${DATA.length}`;
+    summary.classList.add('show');
+    summary.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+function confirmReset(){
+  if (solvedCount === 0) return;
+  if (window.confirm('ล้างคำตอบทั้งหมดและเริ่มทำใหม่ทั้ง 16 ข้อหรือไม่?')) {
+    resetAll();
+  }
+}
+
+function resetAll(){
+  solvedCount = 0;
+  document.getElementById('summary').classList.remove('show');
+  buildCards();
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+buildCards();
+</script>
+</body>
+</html>
